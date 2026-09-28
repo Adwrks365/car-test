@@ -15,16 +15,18 @@ const base =
 export function PhoneButton({
   tone,
   className = "",
-  showNumber = false,
 }: {
   tone: Tone;
   className?: string;
-  showNumber?: boolean;
 }) {
   return (
-    <a href={telHref()} className={`${base} ${tones[tone]} ${className}`}>
+    <a
+      href={telHref()}
+      aria-label={`Позвонить ${PHONE_DISPLAY}`}
+      className={`${base} ${tones[tone]} ${className}`}
+    >
       <Phone className="size-5 shrink-0" aria-hidden="true" />
-      {showNumber ? PHONE_DISPLAY : "Позвонить"}
+      <span className="whitespace-nowrap">{PHONE_DISPLAY}</span>
     </a>
   );
 }

@@ -1,16 +1,13 @@
 /**
- * Contact placeholders — update these before publishing.
- *
  * PHONE_DISPLAY  Number as people should read it.
  * PHONE_E164     Digits only, country code, no "+" (used by the tel: link).
  * WHATSAPP_URL   Full WhatsApp link. Keep the number in sync with PHONE_E164.
  */
-export const PHONE_DISPLAY = "+972-XX-XXX-XXXX";
-export const PHONE_E164 = "972XXXXXXXX";
-export const WHATSAPP_URL = "https://wa.me/972XXXXXXXX";
+export const PHONE_DISPLAY = "053-727-3026";
+export const PHONE_E164 = "972537273026";
+export const WHATSAPP_URL = "https://wa.me/972537273026";
 
-export const WHATSAPP_PREFILL =
-  "Здравствуйте, Аркадий! Нужна помощь с годовым техосмотром.";
+export const WHATSAPP_PREFILL = "Здравствуйте Аркадий, мне нужна помощь с техосмотром.";
 
 /** Replace with the real schedule. Shown as-is on the contact section. */
 export const WORKING_HOURS: { days: string; time: string }[] = [
@@ -40,7 +37,7 @@ export function buildWhatsappMessage(fields: {
   note: string;
 }): string {
   const lines = [
-    "Здравствуйте, Аркадий! Нужна помощь с годовым техосмотром.",
+    WHATSAPP_PREFILL,
     `Имя: ${fields.name.trim()}`,
     `Телефон: ${fields.phone.trim()}`,
   ];

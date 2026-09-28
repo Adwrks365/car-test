@@ -1,12 +1,6 @@
-import { BadgeCheck, Clock3 } from "lucide-react";
-import { CORE_QUOTE } from "../config";
+import { BadgeCheck, Clock3, Phone } from "lucide-react";
+import { CORE_QUOTE, PHONE_DISPLAY, telHref } from "../config";
 import { PhoneButton, WhatsAppButton } from "./CtaButtons";
-
-const included = [
-  "Предварительный осмотр и честный разбор",
-  "Подготовка к требованиям теста",
-  "Сопровождение или прохождение за вас",
-];
 
 export function Hero() {
   return (
@@ -41,39 +35,28 @@ export function Hero() {
           <p className="mt-4 text-sm text-foam">Отвечаю лично. Кармиэль и подготовка к местному тесту.</p>
         </div>
 
-        <aside className="rounded-3xl bg-white p-6 text-ink shadow-[0_28px_70px_-32px_rgba(0,0,0,0.65)] sm:p-8">
-          <div className="flex items-start justify-between gap-4">
+        <figure className="overflow-hidden rounded-3xl bg-white text-ink shadow-[0_28px_70px_-32px_rgba(0,0,0,0.65)]">
+          <img
+            src="/vehicle-license.png"
+            alt="Стилизованный ришион рехев со штампом «Техосмотр пройден»"
+            className="h-auto w-full"
+          />
+          <figcaption className="flex flex-col gap-3 border-t border-steel-line px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.14em] text-cta">Что входит</p>
-              <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-navy">
-                От совета до пройденного теста
-              </h2>
+              <p className="text-sm font-extrabold tracking-wide text-emerald-700">ТЕХОСМОТР ПРОЙДЕН ✓</p>
+              <p className="text-base font-semibold text-navy" dir="rtl" lang="he">
+                נבדק ונמצא תקין
+              </p>
             </div>
-            <div className="grid size-14 shrink-0 place-items-center rounded-2xl bg-navy text-lg font-extrabold text-amber">
-              А
-            </div>
-          </div>
-          <ul className="mt-6 space-y-3">
-            {included.map((item) => (
-              <li key={item} className="flex gap-3 text-base leading-snug text-steel">
-                <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-amber/15 text-sm font-bold text-amber-deep">
-                  ✓
-                </span>
-                {item}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6 grid grid-cols-2 gap-3 border-t border-steel-line pt-6">
-            <div>
-              <p className="text-3xl font-extrabold tracking-tight text-navy">30+</p>
-              <p className="mt-1 text-sm leading-snug text-steel">лет в сфере техосмотра</p>
-            </div>
-            <div>
-              <p className="text-2xl font-extrabold tracking-tight text-navy">Компитест</p>
-              <p className="mt-1 text-sm leading-snug text-steel">Кармиэль, бывший руководитель</p>
-            </div>
-          </div>
-        </aside>
+            <a
+              href={telHref()}
+              className="inline-flex min-h-11 items-center gap-2 text-lg font-extrabold text-navy"
+            >
+              <Phone className="size-5 text-cta" aria-hidden="true" />
+              {PHONE_DISPLAY}
+            </a>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );
