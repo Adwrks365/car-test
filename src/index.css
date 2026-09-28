@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Literata", ui-serif, Georgia, "Times New Roman", serif;
+  --color-navy: #0c1b30;
+  --color-navy-deep: #07111f;
+  --color-navy-mid: #163456;
+  --color-ink: #122033;
+  --color-steel: #4d5e70;
+  --color-steel-line: #d5dee8;
+  --color-mist: #f3f6f9;
+  --color-foam: #d7e3ef;
+  --color-cta: #c65300;
+  --color-cta-hover: #a34400;
+  --color-amber: #f0a202;
+  --color-amber-deep: #8a5a00;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #fff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #f0a202;
+  color: #0c1b30;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}
+
+.hero-grid {
+  background-color: var(--color-navy-deep);
+  background-image:
+    radial-gradient(ellipse 72% 58% at 88% -8%, rgba(240, 162, 2, 0.22), transparent 56%),
+    linear-gradient(180deg, rgba(7, 17, 31, 0.15), rgba(12, 27, 48, 0.92) 78%),
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: auto, auto, 56px 56px, 56px 56px;
+}
+
+body[data-menu-open] .mobile-cta {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

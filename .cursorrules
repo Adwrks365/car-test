@@ -1,0 +1,18 @@
+# Git automation
+
+After you finish a task that changes files in this project, run these commands yourself in the terminal, in order, without asking for confirmation:
+
+```
+git add .
+git commit -m "<one sentence on why the change was made>"
+git push origin main
+```
+
+- Match the repository's existing commit style. Prefer a concise message that explains why.
+- Never update git config.
+- Never skip hooks (`--no-verify`, `--no-gpg-sign`).
+- Never force-push. Never use `git push --force` or `--force-with-lease`.
+- Do not commit secrets (`.env`, credentials, keys, tokens).
+- If a hook rejects the commit, fix the cause and create a new commit.
+- If there is nothing to commit, do not create an empty commit.
+- If `main` is not the current branch, push the current branch only when the user asked to publish it. The default remote target for this project is `origin main`.
