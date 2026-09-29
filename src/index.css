@@ -58,3 +58,100 @@ body[data-menu-open] .mobile-cta {
     scroll-behavior: auto;
   }
 }
+
+html[data-theme="dark"] body {
+  background: #07111f;
+  color: #f4f7fb;
+}
+
+html[data-theme="dark"] .bg-white {
+  background-color: #122033;
+  color: #f4f7fb;
+}
+
+html[data-theme="dark"] .bg-mist {
+  background-color: #0c1b30;
+}
+
+html[data-theme="dark"] .text-navy,
+html[data-theme="dark"] .text-ink {
+  color: #f4f7fb;
+}
+
+html[data-theme="dark"] .text-steel {
+  color: #d7e3ef;
+}
+
+html[data-theme="dark"] .border-steel-line,
+html[data-theme="dark"] .ring-steel-line {
+  border-color: #3d5168;
+}
+
+html[data-contrast="high"] body,
+html[data-contrast="high"] .bg-white,
+html[data-contrast="high"] .bg-mist,
+html[data-contrast="high"] .bg-navy,
+html[data-contrast="high"] .bg-navy-deep,
+html[data-contrast="high"] .hero-grid {
+  background: #000 !important;
+  background-image: none !important;
+  color: #fff !important;
+}
+
+html[data-contrast="high"] .text-navy,
+html[data-contrast="high"] .text-ink,
+html[data-contrast="high"] .text-steel,
+html[data-contrast="high"] .text-foam,
+html[data-contrast="high"] .text-white {
+  color: #fff !important;
+}
+
+html[data-contrast="high"] a {
+  color: #ffe14a !important;
+}
+
+html[data-contrast="high"] .bg-cta,
+html[data-contrast="high"] .bg-\[\#25D366\] {
+  background: #ffe14a !important;
+  color: #000 !important;
+}
+
+html[data-contrast="high"] .bg-cta *,
+html[data-contrast="high"] .bg-\[\#25D366\] * {
+  color: #000 !important;
+}
+
+html[data-links="on"] a {
+  text-decoration: underline;
+  outline: 2px solid #f0a202;
+  outline-offset: 3px;
+}
+
+html[data-links="on"] :focus-visible {
+  outline: 3px solid #ffe14a !important;
+  outline-offset: 4px;
+}
+
+html[data-motion="off"] *,
+html[data-motion="off"] *::before,
+html[data-motion="off"] *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-font="plain"] body,
+html[data-font="plain"] .font-serif {
+  font-family: Arial, "Segoe UI", sans-serif !important;
+}
+
+html[data-contrast="high"] .a11y-panel {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #ffe14a;
+}
+
+html[data-contrast="high"] .a11y-launcher {
+  background: #ffe14a !important;
+  color: #000 !important;
+}

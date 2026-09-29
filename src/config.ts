@@ -6,6 +6,7 @@
 export const PHONE_DISPLAY = "053-727-3026";
 export const PHONE_E164 = "972537273026";
 export const WHATSAPP_URL = "https://wa.me/972537273026";
+export const EMAIL = "arkadi.viner@gmail.com";
 
 export const WHATSAPP_PREFILL = "Здравствуйте Аркадий, мне нужна помощь с техосмотром.";
 
@@ -24,6 +25,10 @@ export const CORE_QUOTE =
 
 export function telHref(): string {
   return `tel:+${PHONE_E164}`;
+}
+
+export function mailHref(): string {
+  return `mailto:${EMAIL}`;
 }
 
 export function whatsappHref(message: string = WHATSAPP_PREFILL): string {

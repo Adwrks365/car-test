@@ -1,12 +1,15 @@
-import { Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock3, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { FormEvent, useState } from "react";
+import { Link } from "react-router-dom";
 import {
+  EMAIL,
   LOCATION_DETAIL,
   LOCATION_LABEL,
   MAPS_URL,
   PHONE_DISPLAY,
   WORKING_HOURS,
   buildWhatsappMessage,
+  mailHref,
   telHref,
   whatsappHref,
 } from "../config";
@@ -68,6 +71,17 @@ export function Contact() {
                 <span>
                   <span className="block text-sm text-foam">Телефон</span>
                   <span className="block text-lg font-bold group-hover:text-amber">{PHONE_DISPLAY}</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href={mailHref()} className="group flex items-start gap-4">
+                <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/8 text-amber ring-1 ring-white/15">
+                  <Mail className="size-5" aria-hidden="true" />
+                </span>
+                <span>
+                  <span className="block text-sm text-foam">Почта</span>
+                  <span className="block text-lg font-bold break-all group-hover:text-amber">{EMAIL}</span>
                 </span>
               </a>
             </li>
@@ -204,6 +218,12 @@ export function Contact() {
             <MessageCircle className="size-5" aria-hidden="true" />
             Отправить в WhatsApp
           </button>
+          <p className="mt-3 text-sm leading-relaxed text-steel">
+            Заявка открывает WhatsApp и не сохраняется на сайте.{" "}
+            <Link to="/privacy" className="font-semibold text-navy underline">
+              Политика конфиденциальности
+            </Link>
+          </p>
         </form>
       </div>
     </section>

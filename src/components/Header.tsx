@@ -1,12 +1,13 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { PhoneButton, WhatsAppButton } from "./CtaButtons";
 
 const links = [
-  { href: "#services", label: "Услуги" },
-  { href: "#why", label: "Почему Аркадий" },
-  { href: "#steps", label: "Как это работает" },
-  { href: "#contact", label: "Контакты" },
+  { href: "/#services", label: "Услуги" },
+  { href: "/#why", label: "Почему Аркадий" },
+  { href: "/#steps", label: "Как это работает" },
+  { href: "/#contact", label: "Контакты" },
 ];
 
 export function Header() {
@@ -39,7 +40,7 @@ export function Header() {
         К содержанию
       </a>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5">
-        <a href="#top" className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none">
+        <Link to="/" className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none">
           <img
             src="/logo.png"
             alt=""
@@ -50,17 +51,17 @@ export function Header() {
           <span className="text-[13px] font-extrabold leading-tight tracking-tight text-white sm:whitespace-nowrap sm:text-sm xl:text-base">
             Аркадий <span className="font-semibold text-foam">|</span> Техосмотр Кармиэль
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-4 xl:flex" aria-label="Разделы страницы">
           {links.map((link) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
+              to={link.href}
               className="text-sm font-semibold text-foam transition-colors hover:text-white"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -85,24 +86,14 @@ export function Header() {
         <div id="mobile-nav" className="border-t border-white/10 bg-navy px-5 py-4 xl:hidden">
           <nav className="flex flex-col" aria-label="Разделы страницы">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={link.href}
                 className="border-b border-white/10 py-3 text-base font-semibold text-white"
-                onClick={(event) => {
-                  event.preventDefault();
-                  setOpen(false);
-                  window.setTimeout(() => {
-                    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                    document.querySelector(link.href)?.scrollIntoView({
-                      behavior: reduce ? "auto" : "smooth",
-                    });
-                    history.pushState(null, "", link.href);
-                  }, 50);
-                }}
+                onClick={() => setOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="mt-4 grid gap-3">

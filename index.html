@@ -18,6 +18,21 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU" />
     <title>Техосмотр в Кармиэле — Аркадий</title>
+    <script>
+      try {
+        var prefs = JSON.parse(localStorage.getItem("a11y-prefs") || "null");
+        if (prefs) {
+          var root = document.documentElement;
+          if (prefs.highContrast) root.dataset.contrast = "high";
+          if (prefs.darkMode) root.dataset.theme = "dark";
+          if (prefs.highlightLinks) root.dataset.links = "on";
+          if (prefs.stopMotion) root.dataset.motion = "off";
+          if (prefs.readableFont) root.dataset.font = "plain";
+          var sizes = ["100%", "112.5%", "125%"];
+          if (prefs.fontScale === 1 || prefs.fontScale === 2) root.style.fontSize = sizes[prefs.fontScale];
+        }
+      } catch (e) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
