@@ -1,17 +1,23 @@
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../i18n";
 import { PhoneButton, WhatsAppButton } from "./CtaButtons";
-
-const links = [
-  { href: "/#services", label: "Услуги" },
-  { href: "/#why", label: "Почему Аркадий" },
-  { href: "/#steps", label: "Как это работает" },
-  { href: "/#contact", label: "Контакты" },
-];
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
+
+  const links = useMemo(
+    () => [
+      { href: "/#services", label: t.header.navServices },
+      { href: "/#why", label: t.header.navWhy },
+      { href: "/#steps", label: t.header.navSteps },
+      { href: "/#contact", label: t.header.navContact },
+    ],
+    [t],
+  );
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -35,9 +41,9 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-navy/95 backdrop-blur-md">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-amber focus:px-4 focus:py-2 focus:text-navy"
+        className="sr-only focus:not-sr-only focus:absolute focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-amber focus:px-4 focus:py-2 focus:text-navy"
       >
-        К содержанию
+        {t.header.skipLink}
       </a>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5">
         <Link to="/" className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none">
@@ -49,11 +55,11 @@ export function Header() {
             className="size-11 shrink-0 rounded-full sm:size-12"
           />
           <span className="text-[13px] font-extrabold leading-tight tracking-tight text-white sm:whitespace-nowrap sm:text-sm xl:text-base">
-            Аркадий <span className="font-semibold text-foam">|</span> Техосмотр Кармиэль
+            {t.header.brand}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-4 xl:flex" aria-label="Разделы страницы">
+        <nav className="hidden items-center gap-4 xl:flex" aria-label={t.header.navAria}>
           {links.map((link) => (
             <Link
               key={link.href}
@@ -66,25 +72,29 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 xl:flex">
+          <LanguageSwitcher />
           <PhoneButton tone="ghost" className="min-h-10 px-4 text-sm" />
           <WhatsAppButton tone="amber" className="min-h-10 px-4 text-sm" />
         </div>
 
-        <button
-          type="button"
-          className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-white xl:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span className="sr-only">{open ? "Закрыть меню" : "Открыть меню"}</span>
-          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-        </button>
+        <div className="flex items-center gap-2 xl:hidden">
+          <LanguageSwitcher compact />
+          <button
+            type="button"
+            className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-white"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((value) => !value)}
+          >
+            <span className="sr-only">{open ? t.header.closeMenu : t.header.openMenu}</span>
+            {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          </button>
+        </div>
       </div>
 
       {open ? (
         <div id="mobile-nav" className="border-t border-white/10 bg-navy px-5 py-4 xl:hidden">
-          <nav className="flex flex-col" aria-label="Разделы страницы">
+          <nav className="flex flex-col" aria-label={t.header.navAria}>
             {links.map((link) => (
               <Link
                 key={link.href}

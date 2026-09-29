@@ -1,7 +1,9 @@
 import { ArrowUp } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLanguage } from "../i18n";
 
 export function ScrollTop() {
+  const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -16,8 +18,8 @@ export function ScrollTop() {
   return (
     <button
       type="button"
-      className="hover-lift fixed bottom-3 left-3 z-40 grid size-11 place-items-center rounded-full bg-navy text-white shadow-md ring-1 ring-white/20"
-      aria-label="Наверх"
+      className="hover-lift fixed bottom-3 start-3 z-40 grid size-11 place-items-center rounded-full bg-navy text-white shadow-md ring-1 ring-white/20"
+      aria-label={t.scrollTop.label}
       onClick={() => {
         const reduce =
           window.matchMedia("(prefers-reduced-motion: reduce)").matches ||

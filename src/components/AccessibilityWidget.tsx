@@ -7,8 +7,10 @@ import {
   saveA11yPrefs,
   type A11yPrefs,
 } from "../a11y";
+import { useLanguage } from "../i18n";
 
 export function AccessibilityWidget() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [prefs, setPrefs] = useState<A11yPrefs>(defaultA11yPrefs);
   const panelId = useId();
@@ -41,11 +43,11 @@ export function AccessibilityWidget() {
   }
 
   return (
-    <div className="fixed left-3 top-1/2 z-50 -translate-y-1/2">
+    <div className="fixed start-3 top-1/2 z-50 -translate-y-1/2">
       <button
         type="button"
         className="a11y-launcher grid size-11 place-items-center rounded-full bg-navy text-white shadow-md ring-1 ring-white/20 transition-shadow hover:shadow-lg"
-        aria-label="Accessibility Menu / נגישות"
+        aria-label={t.a11y.launcherLabel}
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
@@ -58,28 +60,24 @@ export function AccessibilityWidget() {
           ref={panelRef}
           id={panelId}
           role="dialog"
-          aria-label="נגישות / Доступность"
-          className="a11y-panel fixed left-[3.75rem] top-1/2 max-h-[min(32rem,80vh)] w-[min(18rem,calc(100vw-5rem))] -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-4 text-ink shadow-2xl ring-1 ring-steel-line"
+          aria-label={t.a11y.dialogLabel}
+          className="a11y-panel fixed start-[3.75rem] top-1/2 max-h-[min(32rem,80vh)] w-[min(18rem,calc(100vw-5rem))] -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-4 text-ink shadow-2xl ring-1 ring-steel-line"
         >
-          <p className="text-sm font-extrabold text-navy">נגישות · Доступность</p>
+          <p className="text-sm font-extrabold text-navy">{t.a11y.title}</p>
           <div className="mt-3 grid gap-2">
             <Toggle
               pressed={prefs.highContrast}
               onClick={() => toggle("highContrast")}
-              label="ניגודיות גבוהה / Контраст"
+              label={t.a11y.highContrast}
             />
-            <Toggle
-              pressed={prefs.darkMode}
-              onClick={() => toggle("darkMode")}
-              label="מצב כהה / Тёмная тема"
-            />
+            <Toggle pressed={prefs.darkMode} onClick={() => toggle("darkMode")} label={t.a11y.darkMode} />
             <div className="flex items-center justify-between gap-2 rounded-xl bg-mist px-3 py-2">
-              <span className="text-sm font-semibold text-navy">גודל טקסט / Текст</span>
+              <span className="text-sm font-semibold text-navy">{t.a11y.fontSize}</span>
               <span className="flex gap-1">
                 <button
                   type="button"
                   className="grid size-9 place-items-center rounded-lg bg-white text-sm font-extrabold text-navy ring-1 ring-steel-line"
-                  aria-label="Уменьшить текст"
+                  aria-label={t.a11y.decreaseFont}
                   disabled={prefs.fontScale === 0}
                   onClick={() =>
                     update({ ...prefs, fontScale: (Math.max(0, prefs.fontScale - 1) as 0 | 1 | 2) })
@@ -90,7 +88,7 @@ export function AccessibilityWidget() {
                 <button
                   type="button"
                   className="grid size-9 place-items-center rounded-lg bg-white text-base font-extrabold text-navy ring-1 ring-steel-line"
-                  aria-label="Увеличить текст"
+                  aria-label={t.a11y.increaseFont}
                   disabled={prefs.fontScale === 2}
                   onClick={() =>
                     update({ ...prefs, fontScale: (Math.min(2, prefs.fontScale + 1) as 0 | 1 | 2) })
@@ -103,24 +101,24 @@ export function AccessibilityWidget() {
             <Toggle
               pressed={prefs.highlightLinks}
               onClick={() => toggle("highlightLinks")}
-              label="הדגשת קישורים / Ссылки и фокус"
+              label={t.a11y.highlightLinks}
             />
             <Toggle
               pressed={prefs.stopMotion}
               onClick={() => toggle("stopMotion")}
-              label="עצירת אנימציות / Без анимации"
+              label={t.a11y.stopMotion}
             />
             <Toggle
               pressed={prefs.readableFont}
               onClick={() => toggle("readableFont")}
-              label="גופן קריא / Простой шрифт"
+              label={t.a11y.readableFont}
             />
             <button
               type="button"
               className="mt-1 min-h-10 rounded-xl text-sm font-semibold text-steel underline"
               onClick={() => update(defaultA11yPrefs)}
             >
-              איפוס / Сбросить
+              {t.a11y.reset}
             </button>
           </div>
         </div>

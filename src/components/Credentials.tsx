@@ -1,42 +1,26 @@
 import { Award, ZoomIn } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "../i18n";
+import type { CredentialItem } from "../i18n/types";
 import { Lightbox } from "./Lightbox";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
-const credentials = [
-  {
-    id: "engineering",
-    src: "/credentials-engineering.png",
-    caption: "Диплом инженера-механика",
-    alt: "Свидетельство о регистрации инженера-механика в Израиле",
-  },
-  {
-    id: "inspector",
-    src: "/credentials-inspector.png",
-    caption: "Лицензия государственного инспектора",
-    alt: "Государственная лицензия бухана рехев — Аркадий Винер",
-  },
-  {
-    id: "technion",
-    src: "/credentials-technion.png",
-    caption: "Повышение квалификации в Технионе",
-    alt: "Сертификат Техниона — переподготовка буханей рехев",
-  },
-] as const;
+const credentialSrc: Record<CredentialItem["id"], string> = {
+  engineering: "/credentials-engineering.png",
+  inspector: "/credentials-inspector.png",
+  technion: "/credentials-technion.png",
+};
 
 export function Credentials() {
-  const [active, setActive] = useState<(typeof credentials)[number] | null>(null);
+  const { t } = useLanguage();
+  const [active, setActive] = useState<CredentialItem | null>(null);
 
   return (
     <section id="expert" className="scroll-mt-20 bg-white py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
-          <SectionHeading
-            eyebrow="Эксперт"
-            title="Познакомьтесь с экспертом"
-            text="Официальные документы и лицензии — не слова, а подтверждённая квалификация. Нажмите на документ, чтобы открыть его крупно."
-          />
+          <SectionHeading eyebrow={t.credentials.eyebrow} title={t.credentials.title} text={t.credentials.text} />
         </Reveal>
 
         <div className="mt-10 grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
@@ -45,23 +29,20 @@ export function Credentials() {
               <div className="relative">
                 <img
                   src="/arkady-portrait.jpg"
-                  alt="Аркадий Винер — государственный инспектор и инженер"
+                  alt={t.credentials.portraitAlt}
                   className="size-40 rounded-3xl object-cover object-top shadow-[0_20px_50px_-24px_rgba(12,27,48,0.55)] ring-4 ring-amber/30 sm:size-48"
                 />
-                <span className="absolute -bottom-3 -right-3 grid size-12 place-items-center rounded-2xl bg-navy text-amber shadow-lg">
+                <span className="absolute -bottom-3 -end-3 grid size-12 place-items-center rounded-2xl bg-navy text-amber shadow-lg">
                   <Award className="size-6" aria-hidden="true" />
                 </span>
               </div>
-              <h3 className="mt-6 text-2xl font-extrabold tracking-tight text-navy">Аркадий Винер</h3>
-              <p className="mt-2 max-w-sm text-base leading-relaxed text-steel">
-                Инженер-механик, лицензированный государственный инспектор и бывший главный эксперт Компитест
-                Кармиэль. Более 30 лет в сфере техосмотра.
-              </p>
+              <h3 className="mt-6 text-2xl font-extrabold tracking-tight text-navy">{t.credentials.name}</h3>
+              <p className="mt-2 max-w-sm text-base leading-relaxed text-steel">{t.credentials.bio}</p>
             </div>
           </Reveal>
 
           <div className="grid gap-4 sm:grid-cols-3">
-            {credentials.map((item, index) => (
+            {t.credentials.items.map((item, index) => (
               <Reveal key={item.id} delay={120 + index * 70}>
                 <button
                   type="button"
@@ -70,13 +51,13 @@ export function Credentials() {
                 >
                   <div className="relative aspect-[3/4] overflow-hidden bg-white">
                     <img
-                      src={item.src}
+                      src={credentialSrc[item.id]}
                       alt=""
                       className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
                     />
                     <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-1 bg-navy/75 py-2 text-xs font-semibold text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                       <ZoomIn className="size-3.5" aria-hidden="true" />
-                      Увеличить
+                      {t.credentials.zoom}
                     </span>
                   </div>
                   <p className="px-3 py-3 text-sm font-bold leading-snug text-navy">{item.caption}</p>
@@ -88,7 +69,7 @@ export function Credentials() {
       </div>
 
       <Lightbox
-        src={active?.src ?? ""}
+        src={active ? credentialSrc[active.id] : ""}
         alt={active?.alt ?? ""}
         caption={active?.caption ?? ""}
         open={active !== null}

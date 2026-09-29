@@ -3,16 +3,14 @@ import { FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   EMAIL,
-  LOCATION_DETAIL,
-  LOCATION_LABEL,
   MAPS_URL,
   PHONE_DISPLAY,
-  WORKING_HOURS,
   buildWhatsappMessage,
   mailHref,
   telHref,
   whatsappHref,
 } from "../config";
+import { useLanguage } from "../i18n";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
@@ -26,6 +24,7 @@ type FormState = {
 const emptyForm: FormState = { name: "", phone: "", car: "", note: "" };
 
 export function Contact() {
+  const { t } = useLanguage();
   const [form, setForm] = useState<FormState>(emptyForm);
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
@@ -40,12 +39,12 @@ export function Contact() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!form.name.trim() || !form.phone.trim()) {
-      setError("Укажите имя и телефон — так я смогу ответить.");
+      setError(t.contact.errorRequired);
       setSent(false);
       return;
     }
 
-    const url = whatsappHref(buildWhatsappMessage(form));
+    const url = whatsappHref(buildWhatsappMessage(form, t.whatsapp));
     const popup = window.open(url, "_blank", "noopener,noreferrer");
     setFallbackUrl(url);
     setSent(true);
@@ -59,9 +58,9 @@ export function Contact() {
           <Reveal>
             <SectionHeading
               light
-              eyebrow="Контакты"
-              title="Напишите — разберём ваш автомобиль"
-              text="Короткий звонок или сообщение в WhatsApp. Скажите, какая машина и когда тест — я подскажу, с чего начать."
+              eyebrow={t.contact.eyebrow}
+              title={t.contact.title}
+              text={t.contact.text}
             />
           </Reveal>
 
@@ -72,7 +71,7 @@ export function Contact() {
                   <Phone className="size-5" aria-hidden="true" />
                 </span>
                 <span>
-                  <span className="block text-sm text-foam">Телефон</span>
+                  <span className="block text-sm text-foam">{t.contact.phoneLabel}</span>
                   <span className="block text-lg font-bold group-hover:text-amber">{PHONE_DISPLAY}</span>
                 </span>
               </a>
@@ -83,14 +82,14 @@ export function Contact() {
                   <Mail className="size-5" aria-hidden="true" />
                 </span>
                 <span>
-                  <span className="block text-sm text-foam">Почта</span>
+                  <span className="block text-sm text-foam">{t.contact.emailLabel}</span>
                   <span className="block text-lg font-bold break-all group-hover:text-amber">{EMAIL}</span>
                 </span>
               </a>
             </li>
             <li>
               <a
-                href={whatsappHref()}
+                href={whatsappHref(t.whatsapp.prefill)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-start gap-4"
@@ -99,8 +98,8 @@ export function Contact() {
                   <MessageCircle className="size-5" aria-hidden="true" />
                 </span>
                 <span>
-                  <span className="block text-sm text-foam">WhatsApp</span>
-                  <span className="block text-lg font-bold group-hover:text-amber">Написать напрямую</span>
+                  <span className="block text-sm text-foam">{t.contact.whatsappLabel}</span>
+                  <span className="block text-lg font-bold group-hover:text-amber">{t.contact.whatsappDirect}</span>
                 </span>
               </a>
             </li>
@@ -109,12 +108,10 @@ export function Contact() {
                 <Clock3 className="size-5" aria-hidden="true" />
               </span>
               <span>
-                <span className="block text-sm text-foam">Часы работы</span>
-                {WORKING_HOURS.map((slot) => (
-                  <span key={slot.days} className="mt-1 block text-base font-semibold">
-                    {slot.days}: {slot.time}
-                  </span>
-                ))}
+                <span className="block text-sm text-foam">{t.contact.hoursLabel}</span>
+                <span className="mt-1 block text-base font-semibold">
+                  {t.contact.hoursDays}: {t.contact.hoursTime}
+                </span>
               </span>
             </li>
             <li>
@@ -128,9 +125,9 @@ export function Contact() {
                   <MapPin className="size-5" aria-hidden="true" />
                 </span>
                 <span>
-                  <span className="block text-sm text-foam">Где</span>
-                  <span className="block text-lg font-bold group-hover:text-amber">{LOCATION_LABEL}</span>
-                  <span className="mt-1 block text-sm leading-relaxed text-foam">{LOCATION_DETAIL}</span>
+                  <span className="block text-sm text-foam">{t.contact.locationNavLabel}</span>
+                  <span className="block text-lg font-bold group-hover:text-amber">{t.contact.locationLabel}</span>
+                  <span className="mt-1 block text-sm leading-relaxed text-foam">{t.contact.locationDetail}</span>
                 </span>
               </a>
             </li>
@@ -143,91 +140,89 @@ export function Contact() {
             noValidate
             className="rounded-3xl bg-white p-6 text-ink shadow-[0_24px_60px_-32px_rgba(0,0,0,0.55)] sm:p-8"
           >
-          <h3 className="text-2xl font-extrabold tracking-tight text-navy">Заявка в WhatsApp</h3>
-          <p className="mt-2 text-steel">
-            Форма откроет чат с уже готовым текстом. Никуда на сайт сообщение не уходит.
-          </p>
+            <h3 className="text-2xl font-extrabold tracking-tight text-navy">{t.contact.formTitle}</h3>
+            <p className="mt-2 text-steel">{t.contact.formIntro}</p>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <label className="block text-sm font-semibold text-navy">
-              Имя
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <label className="block text-sm font-semibold text-navy">
+                {t.contact.nameLabel}
+                <input
+                  name="name"
+                  autoComplete="name"
+                  value={form.name}
+                  onChange={(event) => update("name", event.target.value)}
+                  className="mt-1.5 w-full rounded-xl border border-steel-line bg-mist px-3 py-3 text-base font-medium text-ink outline-none"
+                  placeholder={t.contact.namePlaceholder}
+                />
+              </label>
+              <label className="block text-sm font-semibold text-navy">
+                {t.contact.phoneLabelField}
+                <input
+                  name="phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  value={form.phone}
+                  onChange={(event) => update("phone", event.target.value)}
+                  className="mt-1.5 w-full rounded-xl border border-steel-line bg-mist px-3 py-3 text-base font-medium text-ink outline-none"
+                  placeholder={t.contact.phonePlaceholder}
+                />
+              </label>
+            </div>
+
+            <label className="mt-4 block text-sm font-semibold text-navy">
+              {t.contact.carLabel}
               <input
-                name="name"
-                autoComplete="name"
-                value={form.name}
-                onChange={(event) => update("name", event.target.value)}
+                name="car"
+                value={form.car}
+                onChange={(event) => update("car", event.target.value)}
                 className="mt-1.5 w-full rounded-xl border border-steel-line bg-mist px-3 py-3 text-base font-medium text-ink outline-none"
-                placeholder="Как к вам обращаться"
+                placeholder={t.contact.carPlaceholder}
               />
             </label>
-            <label className="block text-sm font-semibold text-navy">
-              Телефон
-              <input
-                name="phone"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel"
-                value={form.phone}
-                onChange={(event) => update("phone", event.target.value)}
-                className="mt-1.5 w-full rounded-xl border border-steel-line bg-mist px-3 py-3 text-base font-medium text-ink outline-none"
-                placeholder="05X-XXX-XXXX"
+
+            <label className="mt-4 block text-sm font-semibold text-navy">
+              {t.contact.noteLabel}
+              <textarea
+                name="note"
+                rows={4}
+                value={form.note}
+                onChange={(event) => update("note", event.target.value)}
+                className="mt-1.5 w-full resize-y rounded-xl border border-steel-line bg-mist px-3 py-3 text-base font-medium text-ink outline-none"
+                placeholder={t.contact.notePlaceholder}
               />
             </label>
-          </div>
 
-          <label className="mt-4 block text-sm font-semibold text-navy">
-            Автомобиль
-            <input
-              name="car"
-              value={form.car}
-              onChange={(event) => update("car", event.target.value)}
-              className="mt-1.5 w-full rounded-xl border border-steel-line bg-mist px-3 py-3 text-base font-medium text-ink outline-none"
-              placeholder="Марка, модель, год — если знаете"
-            />
-          </label>
+            {error ? (
+              <p role="alert" className="mt-4 text-sm font-semibold text-cta">
+                {error}
+              </p>
+            ) : null}
 
-          <label className="mt-4 block text-sm font-semibold text-navy">
-            Комментарий
-            <textarea
-              name="note"
-              rows={4}
-              value={form.note}
-              onChange={(event) => update("note", event.target.value)}
-              className="mt-1.5 w-full resize-y rounded-xl border border-steel-line bg-mist px-3 py-3 text-base font-medium text-ink outline-none"
-              placeholder="Когда заканчивается тест и что уже беспокоит"
-            />
-          </label>
+            {sent ? (
+              <p role="status" className="mt-4 text-sm font-semibold text-navy">
+                {t.contact.sentOpening}{" "}
+                {fallbackUrl ? (
+                  <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" className="underline">
+                    {t.contact.sentFallback}
+                  </a>
+                ) : null}
+              </p>
+            ) : null}
 
-          {error ? (
-            <p role="alert" className="mt-4 text-sm font-semibold text-cta">
-              {error}
+            <button
+              type="submit"
+              className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-cta px-5 text-base font-semibold text-white transition-colors hover:bg-cta-hover"
+            >
+              <MessageCircle className="size-5" aria-hidden="true" />
+              {t.contact.submit}
+            </button>
+            <p className="mt-3 text-sm leading-relaxed text-steel">
+              {t.contact.privacyNote}{" "}
+              <Link to="/privacy" className="font-semibold text-navy underline">
+                {t.contact.privacyLink}
+              </Link>
             </p>
-          ) : null}
-
-          {sent ? (
-            <p role="status" className="mt-4 text-sm font-semibold text-navy">
-              Открываю WhatsApp с вашим текстом.{" "}
-              {fallbackUrl ? (
-                <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" className="underline">
-                  Если чат не открылся, нажмите здесь.
-                </a>
-              ) : null}
-            </p>
-          ) : null}
-
-          <button
-            type="submit"
-            className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-cta px-5 text-base font-semibold text-white transition-colors hover:bg-cta-hover"
-          >
-            <MessageCircle className="size-5" aria-hidden="true" />
-            Отправить в WhatsApp
-          </button>
-          <p className="mt-3 text-sm leading-relaxed text-steel">
-            Заявка открывает WhatsApp и не сохраняется на сайте.{" "}
-            <Link to="/privacy" className="font-semibold text-navy underline">
-              Политика конфиденциальности
-            </Link>
-          </p>
           </form>
         </Reveal>
       </div>

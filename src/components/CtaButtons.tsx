@@ -1,5 +1,6 @@
 import { MessageCircle, Phone } from "lucide-react";
 import { PHONE_DISPLAY, telHref, whatsappHref } from "../config";
+import { useLanguage } from "../i18n";
 
 type Tone = "amber" | "ghost" | "outline";
 
@@ -19,10 +20,12 @@ export function PhoneButton({
   tone: Tone;
   className?: string;
 }) {
+  const { t } = useLanguage();
+
   return (
     <a
       href={telHref()}
-      aria-label={`Позвонить ${PHONE_DISPLAY}`}
+      aria-label={`${t.cta.callAria} ${PHONE_DISPLAY}`}
       className={`${base} ${tones[tone]} ${className}`}
     >
       <Phone className="size-5 shrink-0" aria-hidden="true" />
@@ -35,22 +38,25 @@ export function WhatsAppButton({
   tone,
   className = "",
   message,
-  label = "Написать в WhatsApp",
+  label,
 }: {
   tone: Tone;
   className?: string;
   message?: string;
   label?: string;
 }) {
+  const { t } = useLanguage();
+  const text = label ?? t.cta.whatsapp;
+
   return (
     <a
-      href={whatsappHref(message)}
+      href={whatsappHref(message ?? t.whatsapp.prefill)}
       target="_blank"
       rel="noopener noreferrer"
       className={`${base} ${tones[tone]} ${className}`}
     >
       <MessageCircle className="size-5 shrink-0" aria-hidden="true" />
-      {label}
+      {text}
     </a>
   );
 }

@@ -1,40 +1,23 @@
 import { BadgeCheck, Phone, Search } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useLanguage } from "../i18n";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
-const steps: { title: string; text: string; icon: LucideIcon }[] = [
-  {
-    title: "Свяжитесь",
-    text: "Позвоните или напишите в WhatsApp. Достаточно марки, года и того, когда заканчивается тест.",
-    icon: Phone,
-  },
-  {
-    title: "Проверим автомобиль",
-    text: "Осмотр и подготовка к требованиям теста. Вы заранее знаете, что в порядке и что ещё закрыть.",
-    icon: Search,
-  },
-  {
-    title: "Тест пройден",
-    text: "Сопровождаю процедуру или прохожу её за вас. Вам остаётся результат, а не очередь.",
-    icon: BadgeCheck,
-  },
-];
+const icons = [Phone, Search, BadgeCheck] as const;
 
 export function Steps() {
+  const { t } = useLanguage();
+
   return (
     <section id="steps" className="scroll-mt-20 bg-mist py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
-          <SectionHeading
-            eyebrow="Как это работает"
-            title="Три шага от звонка до пройденного теста"
-            text="Без анкет на десять полей и без ожидания «мы вам перезвоним когда-нибудь»."
-          />
+          <SectionHeading eyebrow={t.steps.eyebrow} title={t.steps.title} text={t.steps.text} />
         </Reveal>
         <ol className="mt-10 grid gap-5 md:grid-cols-3">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
+          {t.steps.items.map((step, index) => {
+            const Icon: LucideIcon = icons[index] ?? Phone;
             return (
               <Reveal
                 key={step.title}

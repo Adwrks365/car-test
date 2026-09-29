@@ -5,13 +5,14 @@ import { Hero } from "../components/Hero";
 import { Services } from "../components/Services";
 import { Steps } from "../components/Steps";
 import { Why } from "../components/Why";
-
-const HOME_TITLE = "Техосмотр в Кармиэле — Аркадий";
+import { useLanguage } from "../i18n";
 
 export function HomePage() {
+  const { t } = useLanguage();
+
   useEffect(() => {
-    document.title = HOME_TITLE;
-  }, []);
+    document.title = t.meta.title;
+  }, [t.meta.title]);
 
   return (
     <main id="main">

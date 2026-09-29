@@ -1,21 +1,24 @@
 import { MessageCircle, Phone } from "lucide-react";
 import { PHONE_DISPLAY, telHref, whatsappHref } from "../config";
+import { useLanguage } from "../i18n";
 
 export function FloatingCta() {
+  const { t } = useLanguage();
+
   return (
-    <div className="mobile-cta fixed bottom-3 right-3 z-40 flex flex-col gap-2 lg:hidden">
+    <div className="mobile-cta fixed bottom-3 end-3 z-40 flex flex-col gap-2 lg:hidden">
       <a
-        href={whatsappHref()}
+        href={whatsappHref(t.whatsapp.prefill)}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Написать в WhatsApp"
+        aria-label={t.cta.whatsappAria}
         className="grid size-11 place-items-center rounded-full bg-[#25D366] text-white shadow-md ring-1 ring-black/10 transition-shadow hover:shadow-lg"
       >
         <MessageCircle className="size-5" aria-hidden="true" />
       </a>
       <a
         href={telHref()}
-        aria-label={`Позвонить ${PHONE_DISPLAY}`}
+        aria-label={`${t.cta.callAria} ${PHONE_DISPLAY}`}
         className="grid size-11 place-items-center rounded-full bg-cta text-white shadow-md ring-1 ring-black/10 transition-shadow hover:shadow-lg"
       >
         <Phone className="size-5" aria-hidden="true" />

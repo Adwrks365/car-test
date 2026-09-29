@@ -15,19 +15,3 @@ export function LegalLayout({ title, children }: { title: string; children: Reac
     </main>
   );
 }
-
-export function LegalBlock({
-  lang,
-  dir,
-  children,
-}: {
-  lang: "he" | "ru";
-  dir: "rtl" | "ltr";
-  children: ReactNode;
-}) {
-  return (
-    <section lang={lang} dir={dir} className="mt-10 border-t border-steel-line pt-8 first:mt-0 first:border-0 first:pt-0">
-      {children}
-    </section>
-  );
-}

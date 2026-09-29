@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { useLanguage } from "../i18n";
 
 export function Lightbox({
   src,
@@ -14,6 +15,8 @@ export function Lightbox({
   open: boolean;
   onClose: () => void;
 }) {
+  const { t } = useLanguage();
+
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
@@ -39,8 +42,8 @@ export function Lightbox({
     >
       <button
         type="button"
-        className="absolute right-3 top-3 grid size-11 place-items-center rounded-full bg-white/10 text-white ring-1 ring-white/25 transition-colors hover:bg-white/20"
-        aria-label="Закрыть"
+        className="absolute end-3 top-3 grid size-11 place-items-center rounded-full bg-white/10 text-white ring-1 ring-white/25 transition-colors hover:bg-white/20"
+        aria-label={t.lightbox.close}
         onClick={onClose}
       >
         <X className="size-5" aria-hidden="true" />
