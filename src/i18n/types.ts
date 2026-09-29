@@ -41,7 +41,13 @@ export type LegalPage = {
   questionsPrefix?: string;
 };
 
+export type LocaleAssets = {
+  licenseImage: string;
+  showStampOverlay: boolean;
+};
+
 export type Translations = {
+  assets: LocaleAssets;
   meta: {
     title: string;
     description: string;

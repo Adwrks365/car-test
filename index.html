@@ -20,10 +20,16 @@
     <title>Техосмотр в Кармиэле — Аркадий</title>
     <script>
       try {
-        var locale = localStorage.getItem("site-locale");
+        var params = new URLSearchParams(window.location.search);
+        var urlLang = params.get("lang");
+        var stored = localStorage.getItem("site-locale");
+        var locale = urlLang === "he" || urlLang === "ru" ? urlLang : stored;
         if (locale === "he") {
           document.documentElement.lang = "he";
           document.documentElement.dir = "rtl";
+        } else if (locale === "ru") {
+          document.documentElement.lang = "ru";
+          document.documentElement.dir = "ltr";
         }
       } catch (e) {}
     </script>

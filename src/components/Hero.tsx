@@ -20,7 +20,7 @@ function LicenseStampBadge({ label }: { label: string }) {
 }
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <section id="top" className="hero-grid text-white">
@@ -56,8 +56,13 @@ export function Hero() {
 
         <figure className="hover-lift overflow-hidden rounded-3xl bg-white text-ink shadow-[0_28px_70px_-32px_rgba(0,0,0,0.65)]">
           <div className="relative">
-            <img src="/vehicle-license.png" alt={t.hero.licenseAlt} className="h-auto w-full" />
-            <LicenseStampBadge label={t.hero.stampPrimary} />
+            <img
+              key={locale}
+              src={t.assets.licenseImage}
+              alt={t.hero.licenseAlt}
+              className="h-auto w-full"
+            />
+            {t.assets.showStampOverlay ? <LicenseStampBadge label={t.hero.stampPrimary} /> : null}
           </div>
           <figcaption className="flex flex-col gap-3 border-t border-steel-line px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
