@@ -21,6 +21,9 @@ export function Credentials() {
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
           <SectionHeading eyebrow={t.credentials.eyebrow} title={t.credentials.title} text={t.credentials.text} />
+          <p className="mt-4 inline-flex max-w-2xl items-center rounded-full border border-amber/35 bg-amber/10 px-4 py-2 text-sm font-semibold leading-snug text-amber-deep">
+            {t.credentials.authorityCaption}
+          </p>
         </Reveal>
 
         <div className="mt-10 grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">

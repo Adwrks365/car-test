@@ -17,8 +17,8 @@ export function HomePage() {
   return (
     <main id="main">
       <Hero />
-      <Credentials />
       <Services />
+      <Credentials />
       <Why />
       <Steps />
       <Contact />
