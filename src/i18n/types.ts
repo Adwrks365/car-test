@@ -144,6 +144,9 @@ export type Translations = {
   footer: {
     brand: string;
     tagline: string;
+    contacts: string;
+    contactsNavAria: string;
+    whatsappLink: string;
     legalNavAria: string;
     documents: string;
     accessibility: string;

@@ -163,7 +163,10 @@ export const he: Translations = {
   },
   footer: {
     brand: "ארקדי · טסט שנתי כרמיאל",
-    tagline: "הכנה וליווי לטסט השנתי בכרמיאל. מנהל מכון רישוי לשעבר בקומפיטסט.",
+    tagline: "הכנה וליווי לטסט השנתי בכרמיאל.",
+    contacts: "יצירת קשר",
+    contactsNavAria: "פרטי יצירת קשר",
+    whatsappLink: "כתיבה ב-WhatsApp",
     legalNavAria: "מידע משפטי",
     documents: "מסמכים",
     accessibility: "הצהרת נגישות",

@@ -1,7 +1,10 @@
-import { Mail, Phone } from "lucide-react";
+import { Mail, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import { EMAIL, PHONE_DISPLAY, mailHref, telHref } from "../config";
+import { EMAIL, PHONE_DISPLAY, mailHref, telHref, whatsappHref } from "../config";
 import { useLanguage } from "../i18n";
+
+const sectionHeading =
+  "text-xs font-bold uppercase tracking-[0.14em] text-amber md:text-center lg:text-start";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -12,45 +15,76 @@ export function Footer() {
     { to: "/terms", label: t.footer.terms },
   ];
 
+  const contactLinks = [
+    {
+      href: telHref(),
+      label: PHONE_DISPLAY,
+      icon: Phone,
+      external: false,
+    },
+    {
+      href: whatsappHref(t.whatsapp.prefill),
+      label: t.footer.whatsappLink,
+      icon: MessageCircle,
+      external: true,
+    },
+    {
+      href: mailHref(),
+      label: EMAIL,
+      icon: Mail,
+      external: false,
+    },
+  ] as const;
+
   return (
     <footer className="border-t border-white/10 bg-navy-deep pb-24 text-foam lg:pb-10">
       <div className="mx-auto max-w-6xl px-5 py-10">
-        <div className="grid gap-10 md:grid-cols-2 md:gap-12">
-          <div>
-            <Link to="/" className="inline-block text-lg font-extrabold text-white hover:text-amber">
-              {t.footer.brand}
+        <div className="grid gap-10 text-center lg:grid-cols-3 lg:gap-12 lg:text-start">
+          <div className="flex flex-col items-center lg:items-start">
+            <Link to="/" className="inline-flex flex-col items-center lg:items-start">
+              <img
+                src="/logo.png?v=2"
+                alt=""
+                width={56}
+                height={56}
+                className="size-14 rounded-full ring-1 ring-white/15"
+              />
+              <span className="mt-4 text-lg font-extrabold text-white">{t.footer.brand}</span>
             </Link>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-foam/90">{t.footer.tagline}</p>
-            <ul className="mt-5 space-y-2.5 text-sm">
-              <li>
-                <a
-                  href={mailHref()}
-                  className="inline-flex items-center gap-2 font-medium text-white transition-colors hover:text-amber"
-                >
-                  <Mail className="size-4 shrink-0" aria-hidden="true" />
-                  {EMAIL}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={telHref()}
-                  className="inline-flex items-center gap-2 font-medium text-white transition-colors hover:text-amber"
-                >
-                  <Phone className="size-4 shrink-0" aria-hidden="true" />
-                  {PHONE_DISPLAY}
-                </a>
-              </li>
-            </ul>
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-foam/90">{t.footer.tagline}</p>
           </div>
 
-          <nav aria-label={t.footer.legalNavAria} className="md:justify-self-end">
-            <p className="text-xs font-bold uppercase tracking-[0.14em] text-amber">{t.footer.documents}</p>
-            <ul className="mt-4 flex flex-col gap-3 text-sm">
+          <nav aria-label={t.footer.contactsNavAria} className="flex flex-col items-center lg:items-start">
+            <p className={sectionHeading}>{t.footer.contacts}</p>
+            <ul className="mt-4 flex w-full max-w-xs flex-col gap-3 text-sm lg:max-w-none">
+              {contactLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      {...(item.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="inline-flex items-center justify-center gap-2.5 font-medium text-white transition-colors hover:text-amber lg:justify-start"
+                    >
+                      <Icon className="size-4 shrink-0 text-amber" aria-hidden="true" />
+                      <span className="break-all">{item.label}</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <nav aria-label={t.footer.legalNavAria} className="flex flex-col items-center lg:items-start">
+            <p className={sectionHeading}>{t.footer.documents}</p>
+            <ul className="mt-4 flex w-full max-w-xs flex-col gap-3 text-sm lg:max-w-none">
               {legalLinks.map((link) => (
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="text-foam transition-colors hover:text-white hover:underline underline-offset-2"
+                    className="inline-block text-foam transition-colors hover:text-white hover:underline underline-offset-2"
                   >
                     {link.label}
                   </Link>
@@ -60,11 +94,11 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-center text-xs text-foam/80 sm:flex-row sm:items-center sm:justify-between sm:text-start">
+        <div className="mt-10 flex flex-col items-center gap-3 border-t border-white/10 pt-6 text-center text-xs text-foam/80 lg:flex-row lg:items-center lg:justify-between lg:text-start">
           <p>
             © {new Date().getFullYear()} {t.footer.copyright}
           </p>
-          <p>{t.footer.subtitle}</p>
+          <p className="max-w-md leading-relaxed lg:max-w-none lg:text-end">{t.footer.subtitle}</p>
         </div>
       </div>
     </footer>
