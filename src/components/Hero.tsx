@@ -74,17 +74,17 @@ export function Hero() {
             />
             {t.assets.showStampOverlay ? <LicenseStampBadge label={t.hero.stampPrimary} /> : null}
           </div>
-          <figcaption className="flex flex-col gap-3 border-t border-steel-line px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
+          <figcaption className="flex flex-col gap-3 border-t border-steel-line px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-5">
+            <div className="min-w-0 flex-1">
               <p className="text-sm font-extrabold tracking-wide text-emerald-800">{t.hero.stampPrimary}</p>
               <p className="text-base font-semibold text-navy">{t.hero.stampSecondary}</p>
             </div>
             <a
               href={telHref()}
-              className="inline-flex min-h-11 items-center gap-2 text-lg font-extrabold text-navy"
+              className="inline-flex min-h-11 shrink-0 items-center gap-2 text-lg font-extrabold whitespace-nowrap text-navy"
             >
-              <Phone className="size-5 text-cta" aria-hidden="true" />
-              {PHONE_DISPLAY}
+              <Phone className="size-5 shrink-0 text-cta" aria-hidden="true" />
+              <span className="whitespace-nowrap">{PHONE_DISPLAY}</span>
             </a>
           </figcaption>
         </figure>
