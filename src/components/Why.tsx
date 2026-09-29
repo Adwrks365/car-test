@@ -41,8 +41,8 @@ export function Why() {
           <aside className="hover-lift rounded-3xl bg-navy p-6 text-white sm:p-8 lg:sticky lg:top-24">
             <img
               src="/arkady-portrait.jpg"
-              alt=""
-              className="size-20 rounded-2xl object-cover object-top ring-2 ring-amber/40"
+              alt={t.credentials.portraitAlt}
+              className="size-24 rounded-2xl object-cover object-top ring-2 ring-amber/40 sm:size-28"
             />
             <p className="mt-6 text-sm font-bold uppercase tracking-[0.16em] text-amber">{t.why.asideName}</p>
             <h3 className="mt-2 text-2xl font-extrabold tracking-tight">{t.why.asideTitle}</h3>
