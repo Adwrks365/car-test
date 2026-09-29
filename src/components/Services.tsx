@@ -1,5 +1,6 @@
 import { CarFront, ClipboardCheck, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 const services: {
@@ -32,18 +33,20 @@ export function Services() {
   return (
     <section id="services" className="scroll-mt-20 bg-mist py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5">
-        <SectionHeading
-          eyebrow="Услуги"
-          title="Что я беру на себя"
-          text="Можно прийти за советом, отдать подготовку или передать весь визит. Объём выбираете вы."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="Услуги"
+            title="Что я беру на себя"
+            text="Можно прийти за советом, отдать подготовку или передать весь визит. Объём выбираете вы."
+          />
+        </Reveal>
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
+              <Reveal key={service.title} delay={index * 80}>
               <article
-                key={service.title}
-                className="flex flex-col rounded-3xl border border-steel-line bg-white p-6 shadow-[0_16px_40px_-32px_rgba(12,27,48,0.6)]"
+                className="hover-lift flex h-full flex-col rounded-3xl border border-steel-line bg-white p-6 shadow-[0_16px_40px_-32px_rgba(12,27,48,0.6)]"
               >
                 <div className="flex items-center justify-between">
                   <span className="grid size-12 place-items-center rounded-2xl bg-navy text-amber">
@@ -64,6 +67,7 @@ export function Services() {
                   ))}
                 </ul>
               </article>
+              </Reveal>
             );
           })}
         </div>

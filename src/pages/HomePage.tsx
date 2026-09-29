@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Contact } from "../components/Contact";
+import { Credentials } from "../components/Credentials";
 import { Hero } from "../components/Hero";
 import { Services } from "../components/Services";
 import { Steps } from "../components/Steps";
@@ -15,6 +16,7 @@ export function HomePage() {
   return (
     <main id="main">
       <Hero />
+      <Credentials />
       <Services />
       <Why />
       <Steps />

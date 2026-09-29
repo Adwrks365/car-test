@@ -10,7 +10,7 @@ const tones: Record<Tone, string> = {
 };
 
 const base =
-  "inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 text-base font-semibold transition-colors";
+  "hover-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 text-base font-semibold";
 
 export function PhoneButton({
   tone,

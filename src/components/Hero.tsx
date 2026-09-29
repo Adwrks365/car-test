@@ -35,7 +35,7 @@ export function Hero() {
           <p className="mt-4 text-sm text-foam">Отвечаю лично. Кармиэль и подготовка к местному тесту.</p>
         </div>
 
-        <figure className="overflow-hidden rounded-3xl bg-white text-ink shadow-[0_28px_70px_-32px_rgba(0,0,0,0.65)]">
+        <figure className="hover-lift overflow-hidden rounded-3xl bg-white text-ink shadow-[0_28px_70px_-32px_rgba(0,0,0,0.65)]">
           <img
             src="/vehicle-license.png"
             alt="Стилизованный ришион рехев со штампом «Техосмотр пройден»"

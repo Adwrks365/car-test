@@ -1,6 +1,7 @@
 import { Award, MapPin, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PhoneButton, WhatsAppButton } from "./CtaButtons";
+import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 const reasons: { title: string; text: string; icon: LucideIcon }[] = [
@@ -26,16 +27,19 @@ export function Why() {
     <section id="why" className="scroll-mt-20 bg-white py-16 md:py-24">
       <div className="mx-auto grid max-w-6xl items-start gap-10 px-5 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
+          <Reveal>
           <SectionHeading
             eyebrow="Почему Аркадий"
             title="Человек, который сам руководил станцией"
             text="Время, очередь и неизвестность — вот что обычно стоит за отложенным тестом. Это как раз та работа, которую я забираю."
           />
+          </Reveal>
           <div className="mt-8 space-y-4">
-            {reasons.map((reason) => {
+            {reasons.map((reason, index) => {
               const Icon = reason.icon;
               return (
-                <article key={reason.title} className="flex gap-4 rounded-2xl bg-mist p-4 sm:p-5">
+                <Reveal key={reason.title} delay={index * 70}>
+                <article className="hover-lift flex gap-4 rounded-2xl border border-transparent bg-white p-4 sm:p-5">
                   <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-navy text-amber">
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
@@ -44,15 +48,19 @@ export function Why() {
                     <p className="mt-1 leading-relaxed text-steel">{reason.text}</p>
                   </div>
                 </article>
+                </Reveal>
               );
             })}
           </div>
         </div>
 
-        <aside className="rounded-3xl bg-navy p-6 text-white sm:p-8 lg:sticky lg:top-24">
-          <div className="grid size-16 place-items-center rounded-2xl bg-amber text-2xl font-extrabold text-navy">
-            А
-          </div>
+        <Reveal delay={120}>
+        <aside className="hover-lift rounded-3xl bg-navy p-6 text-white sm:p-8 lg:sticky lg:top-24">
+          <img
+            src="/arkady-portrait.jpg"
+            alt=""
+            className="size-20 rounded-2xl object-cover object-top ring-2 ring-amber/40"
+          />
           <p className="mt-6 text-sm font-bold uppercase tracking-[0.16em] text-amber">Аркадий</p>
           <h3 className="mt-2 text-2xl font-extrabold tracking-tight">
             Бывший главный эксперт и руководитель
@@ -66,6 +74,7 @@ export function Why() {
             <WhatsAppButton tone="ghost" />
           </div>
         </aside>
+        </Reveal>
       </div>
     </section>
   );

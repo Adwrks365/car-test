@@ -13,6 +13,7 @@ import {
   telHref,
   whatsappHref,
 } from "../config";
+import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 type FormState = {
@@ -55,12 +56,14 @@ export function Contact() {
     <section id="contact" className="scroll-mt-20 bg-navy py-16 text-white md:py-24">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <SectionHeading
-            light
-            eyebrow="Контакты"
-            title="Напишите — разберём ваш автомобиль"
-            text="Короткий звонок или сообщение в WhatsApp. Скажите, какая машина и когда тест — я подскажу, с чего начать."
-          />
+          <Reveal>
+            <SectionHeading
+              light
+              eyebrow="Контакты"
+              title="Напишите — разберём ваш автомобиль"
+              text="Короткий звонок или сообщение в WhatsApp. Скажите, какая машина и когда тест — я подскажу, с чего начать."
+            />
+          </Reveal>
 
           <ul className="mt-8 space-y-4">
             <li>
@@ -134,11 +137,12 @@ export function Contact() {
           </ul>
         </div>
 
-        <form
-          onSubmit={onSubmit}
-          noValidate
-          className="rounded-3xl bg-white p-6 text-ink shadow-[0_24px_60px_-32px_rgba(0,0,0,0.55)] sm:p-8"
-        >
+        <Reveal delay={100}>
+          <form
+            onSubmit={onSubmit}
+            noValidate
+            className="rounded-3xl bg-white p-6 text-ink shadow-[0_24px_60px_-32px_rgba(0,0,0,0.55)] sm:p-8"
+          >
           <h3 className="text-2xl font-extrabold tracking-tight text-navy">Заявка в WhatsApp</h3>
           <p className="mt-2 text-steel">
             Форма откроет чат с уже готовым текстом. Никуда на сайт сообщение не уходит.
@@ -224,7 +228,8 @@ export function Contact() {
               Политика конфиденциальности
             </Link>
           </p>
-        </form>
+          </form>
+        </Reveal>
       </div>
     </section>
   );
