@@ -86,7 +86,6 @@ export type Translations = {
     portraitAlt: string;
     name: string;
     bio: string;
-    authorityCaption: string;
     zoom: string;
     items: CredentialItem[];
   };

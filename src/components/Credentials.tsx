@@ -17,13 +17,10 @@ export function Credentials() {
   const [active, setActive] = useState<CredentialItem | null>(null);
 
   return (
-    <section id="expert" className="scroll-mt-20 bg-white py-16 md:py-24">
+    <section id="expert" className="scroll-mt-20 bg-mist py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal>
           <SectionHeading eyebrow={t.credentials.eyebrow} title={t.credentials.title} text={t.credentials.text} />
-          <p className="mt-4 inline-flex max-w-2xl items-center rounded-full border border-amber/35 bg-amber/10 px-4 py-2 text-sm font-semibold leading-snug text-amber-deep">
-            {t.credentials.authorityCaption}
-          </p>
         </Reveal>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -31,7 +28,7 @@ export function Credentials() {
             <Reveal key={item.id} delay={80 + index * 70}>
               <button
                 type="button"
-                className="hover-lift group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-steel-line bg-mist text-start shadow-[0_12px_32px_-24px_rgba(12,27,48,0.5)]"
+                className="hover-lift group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-steel-line bg-white text-start shadow-[0_12px_32px_-24px_rgba(12,27,48,0.5)]"
                 onClick={() => setActive(item)}
               >
                 <div className="relative aspect-[3/4] overflow-hidden bg-white">

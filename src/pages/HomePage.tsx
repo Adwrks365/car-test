@@ -18,8 +18,8 @@ export function HomePage() {
     <main id="main">
       <Hero />
       <Services />
-      <Credentials />
       <Why />
+      <Credentials />
       <Steps />
       <Contact />
     </main>
