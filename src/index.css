@@ -248,3 +248,20 @@ html[data-motion="off"] .reveal {
 html[lang="he"] .license-stamp {
   font-family: var(--font-hebrew);
 }
+
+.hero-headline {
+  text-wrap: balance;
+}
+
+.hero-headline-separator {
+  display: inline-block;
+  unicode-bidi: isolate;
+  white-space: nowrap;
+  font-weight: 800;
+  opacity: 0.92;
+}
+
+html[dir="rtl"] .hero-headline {
+  font-variant-ligatures: none;
+  text-rendering: optimizeLegibility;
+}

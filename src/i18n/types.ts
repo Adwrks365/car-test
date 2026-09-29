@@ -70,7 +70,8 @@ export type Translations = {
   };
   hero: {
     badge: string;
-    title: string;
+    titleLead: string;
+    titleRest: string;
     quote: string;
     experienceBadge: string;
     compitestBadge: string;
@@ -144,6 +145,7 @@ export type Translations = {
   };
   cta: {
     whatsapp: string;
+    whatsappShort: string;
     callAria: string;
     whatsappAria: string;
   };

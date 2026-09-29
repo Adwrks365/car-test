@@ -3,6 +3,18 @@ import { PHONE_DISPLAY, telHref } from "../config";
 import { useLanguage } from "../i18n";
 import { PhoneButton, WhatsAppButton } from "./CtaButtons";
 
+function HeroHeadline({ lead, rest }: { lead: string; rest: string }) {
+  return (
+    <h1 className="hero-headline mt-5 max-w-xl text-4xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.35rem]">
+      <span className="text-pretty">{lead}</span>
+      <span className="hero-headline-separator" aria-hidden="true">
+        {"\u00A0\u2014\u00A0"}
+      </span>
+      <span className="text-pretty">{rest}</span>
+    </h1>
+  );
+}
+
 function LicenseStampBadge({ label }: { label: string }) {
   return (
     <div
@@ -29,9 +41,7 @@ export function Hero() {
           <p className="inline-flex items-center rounded-full border border-amber/40 bg-amber/10 px-3 py-1 text-sm font-semibold text-amber">
             {t.hero.badge}
           </p>
-          <h1 className="mt-5 max-w-xl text-4xl font-extrabold leading-[1.12] tracking-tight sm:text-5xl lg:text-[3.35rem]">
-            {t.hero.title}
-          </h1>
+          <HeroHeadline lead={t.hero.titleLead} rest={t.hero.titleRest} />
           <blockquote className="mt-6 max-w-xl border-s-4 border-amber ps-5">
             <p className="font-serif text-lg leading-relaxed text-white italic sm:text-xl">{t.hero.quote}</p>
           </blockquote>

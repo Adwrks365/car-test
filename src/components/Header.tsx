@@ -46,39 +46,46 @@ export function Header() {
       >
         {t.header.skipLink}
       </a>
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5">
-        <Link to={home} className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-5 xl:gap-4">
+        <Link to={home} className="flex shrink-0 items-center gap-2.5">
           <img
             src="/logo.png?v=2"
             alt=""
             width={48}
             height={48}
-            className="size-11 shrink-0 rounded-full sm:size-12"
+            className="size-10 shrink-0 rounded-full sm:size-11"
           />
-          <span className="text-[13px] font-extrabold leading-tight tracking-tight text-white sm:whitespace-nowrap sm:text-sm xl:text-base">
+          <span className="hidden whitespace-nowrap text-sm font-extrabold leading-none tracking-tight text-white sm:inline xl:text-[15px]">
             {t.header.brand}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-4 xl:flex" aria-label={t.header.navAria}>
+        <nav
+          className="hidden min-w-0 flex-1 items-center justify-center gap-5 xl:flex 2xl:gap-6"
+          aria-label={t.header.navAria}
+        >
           {links.map((link) => (
             <Link
               key={link.href}
               to={link.href}
-              className="text-sm font-semibold text-foam transition-colors hover:text-white"
+              className="whitespace-nowrap text-[13px] font-semibold leading-none text-foam transition-colors hover:text-white 2xl:text-sm"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 xl:flex">
+        <div className="hidden shrink-0 items-center gap-2 xl:flex 2xl:gap-3">
           <LanguageSwitcher />
-          <PhoneButton tone="ghost" className="min-h-10 px-4 text-sm" />
-          <WhatsAppButton tone="amber" className="min-h-10 px-4 text-sm" />
+          <PhoneButton tone="ghost" className="min-h-10 px-3 text-sm 2xl:px-4" />
+          <WhatsAppButton
+            tone="amber"
+            className="min-h-10 px-3 text-sm 2xl:px-4"
+            label={t.cta.whatsappShort}
+          />
         </div>
 
-        <div className="flex items-center gap-2 xl:hidden">
+        <div className="ms-auto flex shrink-0 items-center gap-2 xl:hidden">
           <LanguageSwitcher compact />
           <button
             type="button"
