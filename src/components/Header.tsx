@@ -38,13 +38,21 @@ export function Header() {
       >
         К содержанию
       </a>
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
-        <a href="#top" className="min-w-0 leading-tight">
-          <span className="block text-base font-extrabold tracking-tight text-white">Аркадий</span>
-          <span className="block text-xs font-medium text-foam">Техосмотр · Кармиэль</span>
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5">
+        <a href="#top" className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none">
+          <img
+            src="/logo.png"
+            alt=""
+            width={44}
+            height={44}
+            className="size-9 shrink-0 sm:size-11"
+          />
+          <span className="text-[13px] font-extrabold leading-tight tracking-tight text-white sm:whitespace-nowrap sm:text-sm xl:text-base">
+            Аркадий <span className="font-semibold text-foam">|</span> Техосмотр Кармиэль
+          </span>
         </a>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Разделы страницы">
+        <nav className="hidden items-center gap-4 xl:flex" aria-label="Разделы страницы">
           {links.map((link) => (
             <a
               key={link.href}
@@ -56,14 +64,14 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <PhoneButton tone="ghost" className="min-h-10 px-4 text-sm" />
           <WhatsAppButton tone="amber" className="min-h-10 px-4 text-sm" />
         </div>
 
         <button
           type="button"
-          className="inline-flex size-11 items-center justify-center rounded-lg text-white lg:hidden"
+          className="inline-flex size-11 shrink-0 items-center justify-center rounded-lg text-white xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
@@ -74,7 +82,7 @@ export function Header() {
       </div>
 
       {open ? (
-        <div id="mobile-nav" className="border-t border-white/10 bg-navy px-5 py-4 lg:hidden">
+        <div id="mobile-nav" className="border-t border-white/10 bg-navy px-5 py-4 xl:hidden">
           <nav className="flex flex-col" aria-label="Разделы страницы">
             {links.map((link) => (
               <a
