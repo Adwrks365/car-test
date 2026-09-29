@@ -3,6 +3,19 @@ import { PHONE_DISPLAY, telHref } from "../config";
 import { useLanguage } from "../i18n";
 import { PhoneButton, WhatsAppButton } from "./CtaButtons";
 
+function LicenseStampBadge({ label }: { label: string }) {
+  return (
+    <div
+      className="license-stamp pointer-events-none absolute bottom-[9%] end-[4%] z-10 flex size-[clamp(5.75rem,31%,8.75rem)] rotate-[-13deg] flex-col items-center justify-center rounded-full border-[3px] border-emerald-700/85 bg-[#f0fdf4]/97 p-2 text-center shadow-[0_8px_24px_-8px_rgba(4,120,87,0.55)] ring-2 ring-emerald-600/25 backdrop-blur-[2px]"
+      aria-hidden="true"
+    >
+      <p className="max-w-[92%] text-[clamp(0.58rem,2.1vw,0.74rem)] font-extrabold leading-[1.15] tracking-wide text-emerald-900">
+        {label}
+      </p>
+    </div>
+  );
+}
+
 export function Hero() {
   const { t } = useLanguage();
 
@@ -39,10 +52,13 @@ export function Hero() {
         </div>
 
         <figure className="hover-lift overflow-hidden rounded-3xl bg-white text-ink shadow-[0_28px_70px_-32px_rgba(0,0,0,0.65)]">
-          <img src="/vehicle-license.png" alt={t.hero.licenseAlt} className="h-auto w-full" />
+          <div className="relative">
+            <img src="/vehicle-license.png" alt={t.hero.licenseAlt} className="h-auto w-full" />
+            <LicenseStampBadge label={t.hero.stampPrimary} />
+          </div>
           <figcaption className="flex flex-col gap-3 border-t border-steel-line px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-extrabold tracking-wide text-emerald-700">{t.hero.stampPrimary}</p>
+              <p className="text-sm font-extrabold tracking-wide text-emerald-800">{t.hero.stampPrimary}</p>
               <p className="text-base font-semibold text-navy">{t.hero.stampSecondary}</p>
             </div>
             <a

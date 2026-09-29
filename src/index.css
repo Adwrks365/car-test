@@ -2,6 +2,7 @@
 
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-hebrew: "Rubik", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Literata", ui-serif, Georgia, "Times New Roman", serif;
   --color-navy: #0c1b30;
   --color-navy-deep: #07111f;
@@ -27,6 +28,51 @@ body {
   background: #fff;
   color: var(--color-ink);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html[lang="he"] body {
+  font-family: var(--font-hebrew);
+}
+
+html[lang="he"] h1,
+html[lang="he"] h2,
+html[lang="he"] h3,
+html[lang="he"] h4,
+html[lang="he"] h5,
+html[lang="he"] h6 {
+  font-family: var(--font-hebrew);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+html[lang="he"] .text-navy,
+html[lang="he"] .text-ink {
+  color: #07111f;
+}
+
+html[lang="he"] .text-steel {
+  color: #3a4d62;
+}
+
+html[lang="he"] .font-extrabold {
+  font-weight: 700;
+}
+
+html[lang="he"] .font-semibold {
+  font-weight: 500;
+}
+
+html[data-font="plain"][lang="he"] body,
+html[data-font="plain"][lang="he"] h1,
+html[data-font="plain"][lang="he"] h2,
+html[data-font="plain"][lang="he"] h3,
+html[data-font="plain"][lang="he"] h4,
+html[data-font="plain"][lang="he"] h5,
+html[data-font="plain"][lang="he"] h6 {
+  font-family: Arial, "Segoe UI", sans-serif !important;
 }
 
 ::selection {
@@ -192,4 +238,13 @@ html[data-motion="off"] .reveal {
 .hover-lift.border:hover,
 .hover-lift[class*="border-"]:hover {
   border-color: color-mix(in srgb, var(--color-cta) 45%, var(--color-steel-line));
+}
+
+.license-stamp {
+  font-family: var(--font-sans);
+  text-rendering: geometricPrecision;
+}
+
+html[lang="he"] .license-stamp {
+  font-family: var(--font-hebrew);
 }
