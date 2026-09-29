@@ -6,17 +6,18 @@ import { PhoneButton, WhatsAppButton } from "./CtaButtons";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
-  const { t } = useLanguage();
+  const { t, path } = useLanguage();
   const [open, setOpen] = useState(false);
+  const home = path("/");
 
   const links = useMemo(
     () => [
-      { href: "/#services", label: t.header.navServices },
-      { href: "/#why", label: t.header.navWhy },
-      { href: "/#steps", label: t.header.navSteps },
-      { href: "/#contact", label: t.header.navContact },
+      { href: `${home}#services`, label: t.header.navServices },
+      { href: `${home}#why`, label: t.header.navWhy },
+      { href: `${home}#steps`, label: t.header.navSteps },
+      { href: `${home}#contact`, label: t.header.navContact },
     ],
-    [t],
+    [home, t],
   );
 
   useEffect(() => {
@@ -46,7 +47,7 @@ export function Header() {
         {t.header.skipLink}
       </a>
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5">
-        <Link to="/" className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none">
+        <Link to={home} className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none">
           <img
             src="/logo.png?v=2"
             alt=""

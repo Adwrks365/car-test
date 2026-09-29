@@ -1,11 +1,7 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, type ReactNode } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LOCALE_DIR } from "./config";
-import {
-  applyDocumentLocale,
-  persistLocale,
-  resolveInitialLocale,
-  syncLocaleToUrl,
-} from "./locale";
+import { applyDocumentLocale, localeFromPathname, localizedPath, persistLocale } from "./locale";
 import { translations } from "./translations";
 import type { Locale, Translations } from "./types";
 
@@ -14,22 +10,32 @@ type LanguageContextValue = {
   setLocale: (locale: Locale) => void;
   t: Translations;
   dir: "ltr" | "rtl";
+  path: (pathname: string) => string;
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => resolveInitialLocale());
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const locale = useMemo(() => localeFromPathname(location.pathname), [location.pathname]);
 
   useEffect(() => {
     persistLocale(locale);
     applyDocumentLocale(locale);
-    syncLocaleToUrl(locale);
   }, [locale]);
 
-  const setLocale = (next: Locale) => {
-    setLocaleState(next);
-  };
+  const setLocale = useCallback(
+    (next: Locale) => {
+      if (next === locale) return;
+      const target = `${localizedPath(location.pathname, next)}${location.hash}`;
+      navigate(target);
+    },
+    [locale, location.pathname, location.hash, navigate],
+  );
+
+  const path = useCallback((pathname: string) => localizedPath(pathname, locale), [locale]);
 
   const value = useMemo<LanguageContextValue>(
     () => ({
@@ -37,8 +43,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       setLocale,
       t: translations[locale],
       dir: LOCALE_DIR[locale],
+      path,
     }),
-    [locale],
+    [locale, setLocale, path],
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

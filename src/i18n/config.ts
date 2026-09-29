@@ -2,7 +2,7 @@ import type { Locale } from "./types";
 
 export const DEFAULT_LOCALE: Locale = "ru";
 export const STORAGE_KEY = "site-locale";
-export const URL_PARAM = "lang";
+export const HEBREW_PATH_PREFIX = "/he";
 export const LOCALES: readonly Locale[] = ["ru", "he"];
 
 export const LOCALE_DIR: Record<Locale, "ltr" | "rtl"> = {

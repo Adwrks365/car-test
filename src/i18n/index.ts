@@ -1,4 +1,10 @@
-export { DEFAULT_LOCALE, LOCALES, STORAGE_KEY, URL_PARAM } from "./config";
+export { DEFAULT_LOCALE, HEBREW_PATH_PREFIX, LOCALES, STORAGE_KEY } from "./config";
 export { LanguageProvider, useLanguage } from "./context";
-export { resolveInitialLocale } from "./locale";
+export {
+  isLocale,
+  localeFromPathname,
+  localizedPath,
+  resolveLocaleFromWindow,
+  stripLocalePrefix,
+} from "./locale";
 export type { Locale, LocaleAssets, Translations } from "./types";

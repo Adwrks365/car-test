@@ -7,12 +7,12 @@ const sectionHeading =
   "text-xs font-bold uppercase tracking-[0.14em] text-amber md:text-center lg:text-start";
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, path } = useLanguage();
 
   const legalLinks = [
-    { to: "/accessibility", label: t.footer.accessibility },
-    { to: "/privacy", label: t.footer.privacy },
-    { to: "/terms", label: t.footer.terms },
+    { to: path("/accessibility"), label: t.footer.accessibility },
+    { to: path("/privacy"), label: t.footer.privacy },
+    { to: path("/terms"), label: t.footer.terms },
   ];
 
   const contactLinks = [
@@ -41,7 +41,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-10">
         <div className="grid gap-10 text-center lg:grid-cols-3 lg:gap-12 lg:text-start">
           <div className="flex flex-col items-center lg:items-start">
-            <Link to="/" className="inline-flex flex-col items-center lg:items-start">
+            <Link to={path("/")} className="inline-flex flex-col items-center lg:items-start">
               <img
                 src="/logo.png?v=2"
                 alt=""

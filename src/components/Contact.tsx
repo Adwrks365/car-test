@@ -24,7 +24,7 @@ type FormState = {
 const emptyForm: FormState = { name: "", phone: "", car: "", note: "" };
 
 export function Contact() {
-  const { t } = useLanguage();
+  const { t, path } = useLanguage();
   const [form, setForm] = useState<FormState>(emptyForm);
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
@@ -219,7 +219,7 @@ export function Contact() {
             </button>
             <p className="mt-3 text-sm leading-relaxed text-steel">
               {t.contact.privacyNote}{" "}
-              <Link to="/privacy" className="font-semibold text-navy underline">
+              <Link to={path("/privacy")} className="font-semibold text-navy underline">
                 {t.contact.privacyLink}
               </Link>
             </p>
