@@ -16,7 +16,7 @@ export function ScrollTop() {
   return (
     <button
       type="button"
-      className="fixed bottom-5 left-4 z-40 grid size-12 place-items-center rounded-full bg-navy text-white shadow-lg ring-1 ring-white/20"
+      className="fixed bottom-3 left-3 z-40 grid size-11 place-items-center rounded-full bg-navy text-white shadow-md ring-1 ring-white/20 transition-shadow hover:shadow-lg"
       aria-label="Наверх"
       onClick={() => {
         const reduce =

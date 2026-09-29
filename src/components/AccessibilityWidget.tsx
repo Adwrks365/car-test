@@ -1,3 +1,4 @@
+import { Accessibility } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import {
   applyA11yPrefs,
@@ -43,13 +44,13 @@ export function AccessibilityWidget() {
     <div className="fixed left-3 top-1/2 z-50 -translate-y-1/2">
       <button
         type="button"
-        className="a11y-launcher grid size-14 place-items-center rounded-full bg-navy text-xs font-extrabold leading-tight text-white shadow-lg ring-2 ring-amber"
+        className="a11y-launcher grid size-11 place-items-center rounded-full bg-navy text-white shadow-md ring-1 ring-white/20 transition-shadow hover:shadow-lg"
+        aria-label="Accessibility Menu / נגישות"
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
       >
-        <span className="sr-only">תפריט נגישות. Меню доступности</span>
-        נגישות
+        <Accessibility className="size-5" aria-hidden="true" />
       </button>
 
       {open ? (
@@ -58,7 +59,7 @@ export function AccessibilityWidget() {
           id={panelId}
           role="dialog"
           aria-label="נגישות / Доступность"
-          className="a11y-panel fixed left-20 top-1/2 max-h-[min(32rem,80vh)] w-[min(18rem,calc(100vw-6rem))] -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-4 text-ink shadow-2xl ring-1 ring-steel-line"
+          className="a11y-panel fixed left-[3.75rem] top-1/2 max-h-[min(32rem,80vh)] w-[min(18rem,calc(100vw-5rem))] -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-4 text-ink shadow-2xl ring-1 ring-steel-line"
         >
           <p className="text-sm font-extrabold text-navy">נגישות · Доступность</p>
           <div className="mt-3 grid gap-2">
