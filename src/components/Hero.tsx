@@ -6,12 +6,15 @@ import { PhoneButton, WhatsAppButton } from "./CtaButtons";
 function LicenseStampBadge({ label }: { label: string }) {
   return (
     <div
-      className="license-stamp pointer-events-none absolute bottom-[9%] end-[4%] z-10 flex size-[clamp(5.75rem,31%,8.75rem)] rotate-[-13deg] flex-col items-center justify-center rounded-full border-[3px] border-emerald-700/85 bg-[#f0fdf4]/97 p-2 text-center shadow-[0_8px_24px_-8px_rgba(4,120,87,0.55)] ring-2 ring-emerald-600/25 backdrop-blur-[2px]"
+      className="pointer-events-none absolute top-[36%] right-[4%] z-10 size-[clamp(6.75rem,38%,10.5rem)] rotate-[-12deg]"
       aria-hidden="true"
     >
-      <p className="max-w-[92%] text-[clamp(0.58rem,2.1vw,0.74rem)] font-extrabold leading-[1.15] tracking-wide text-emerald-900">
-        {label}
-      </p>
+      <div className="absolute inset-[-6px] rounded-full bg-white shadow-sm" />
+      <div className="license-stamp relative flex h-full w-full flex-col items-center justify-center rounded-full border-[3px] border-emerald-700 bg-[#ecfdf5] p-2 text-center shadow-[0_10px_28px_-10px_rgba(4,120,87,0.55)] ring-2 ring-emerald-600/30">
+        <p className="max-w-[88%] text-[clamp(0.72rem,2.4vw,0.95rem)] font-extrabold leading-[1.1] tracking-wide text-emerald-900">
+          {label}
+        </p>
+      </div>
     </div>
   );
 }

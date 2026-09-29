@@ -31,8 +31,8 @@ export const he: Translations = {
     experienceBadge: "30+ שנות ניסיון",
     compitestBadge: "מנהל מכון רישוי לשעבר בקומפיטסט",
     personalNote: "עונה באופן אישי. כרמיאל והכנה לטסט המקומי.",
-    licenseAlt: "איור של רישיון רכב עם חותמת «נבדק ונמצא תקין»",
-    stampPrimary: "נבדק ונמצא תקין ✓",
+    licenseAlt: "איור של רישיון רכב עם חותמת «עבר טסט»",
+    stampPrimary: "עבר טסט",
     stampSecondary: "הטסט השנתי עבר בהצלחה",
   },
   credentials: {
