@@ -42,11 +42,11 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-5">
         <Link to="/" className="flex min-w-0 flex-1 items-center gap-2 sm:flex-none">
           <img
-            src="/logo.png"
+            src="/logo.png?v=2"
             alt=""
-            width={44}
-            height={44}
-            className="size-9 shrink-0 sm:size-11"
+            width={48}
+            height={48}
+            className="size-11 shrink-0 rounded-full sm:size-12"
           />
           <span className="text-[13px] font-extrabold leading-tight tracking-tight text-white sm:whitespace-nowrap sm:text-sm xl:text-base">
             Аркадий <span className="font-semibold text-foam">|</span> Техосмотр Кармиэль
