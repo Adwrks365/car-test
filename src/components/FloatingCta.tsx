@@ -6,7 +6,7 @@ export function FloatingCta() {
   const { t } = useLanguage();
 
   return (
-    <div className="mobile-cta fixed bottom-3 end-3 z-40 flex flex-col gap-2 lg:hidden">
+    <div className="mobile-cta fixed right-4 bottom-4 z-40 flex flex-col gap-2 lg:hidden">
       <a
         href={whatsappHref(t.whatsapp.prefill)}
         target="_blank"

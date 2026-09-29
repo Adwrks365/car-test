@@ -43,7 +43,7 @@ export function AccessibilityWidget() {
   }
 
   return (
-    <div className="fixed start-3 top-1/2 z-50 -translate-y-1/2">
+    <div className="fixed bottom-4 left-4 z-50">
       <button
         type="button"
         className="a11y-launcher grid size-11 place-items-center rounded-full bg-navy text-white shadow-md ring-1 ring-white/20 transition-shadow hover:shadow-lg"
@@ -61,7 +61,7 @@ export function AccessibilityWidget() {
           id={panelId}
           role="dialog"
           aria-label={t.a11y.dialogLabel}
-          className="a11y-panel fixed start-[3.75rem] top-1/2 max-h-[min(32rem,80vh)] w-[min(18rem,calc(100vw-5rem))] -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-4 text-ink shadow-2xl ring-1 ring-steel-line"
+          className="a11y-panel fixed bottom-[4.75rem] left-4 max-h-[min(32rem,calc(100vh-6rem))] w-[min(18rem,calc(100vw-2rem))] overflow-y-auto rounded-2xl bg-white p-4 text-ink shadow-2xl ring-1 ring-steel-line"
         >
           <p className="text-sm font-extrabold text-navy">{t.a11y.title}</p>
           <div className="mt-3 grid gap-2">
