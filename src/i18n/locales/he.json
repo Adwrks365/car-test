@@ -26,9 +26,9 @@
     "experienceBadge": "30+ שנות ניסיון",
     "compitestBadge": "מנהל מכון רישוי לשעבר בקומפיטסט",
     "personalNote": "עונה באופן אישי. כרמיאל והכנה לטסט המקומי.",
-    "licenseAlt": "איור של רישיון רכב עם חותמת «עבר טסט»",
-    "stampPrimary": "עבר טסט",
-    "stampSecondary": "הטסט השנתי עבר בהצלחה"
+    "licenseAlt": "רישיון רכב עם חותמת «הטסט עבר בהצלחה»",
+    "stampPrimary": "הטסט עבר בהצלחה ✓",
+    "stampSecondary": "נבדק ונמצא תקין"
   },
   "credentials": {
     "eyebrow": "מומחה",
@@ -321,7 +321,7 @@
     }
   },
   "assets": {
-    "licenseImage": "/vehicle-license.png",
-    "showStampOverlay": true
+    "licenseImage": "/vehicle-license-he.png",
+    "showStampOverlay": false
   }
 }
