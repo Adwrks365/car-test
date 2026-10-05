@@ -1,5 +1,4 @@
 import { BadgeCheck, Clock3, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
 import { PHONE_DISPLAY, telHref } from "../config";
 import { useLanguage } from "../i18n";
 import { PhoneButton, WhatsAppButton } from "./CtaButtons";
@@ -33,7 +32,7 @@ function LicenseStampBadge({ label }: { label: string }) {
 }
 
 export function Hero() {
-  const { locale, t, path } = useLanguage();
+  const { locale, t } = useLanguage();
 
   return (
     <section id="top" className="hero-grid text-white">
@@ -62,16 +61,6 @@ export function Hero() {
             <PhoneButton tone="amber" className="sm:min-w-44" />
             <WhatsAppButton tone="ghost" className="sm:min-w-56" />
           </div>
-          <p className="mt-4 text-sm text-foam">{t.hero.personalNote}</p>
-          <p className="mt-3 max-w-xl text-xs leading-relaxed text-foam/80">
-            *{t.disclaimer.short}{" "}
-            <Link
-              to={path("/terms")}
-              className="font-semibold text-amber underline underline-offset-2 hover:text-amber/90"
-            >
-              {t.disclaimer.termsLink}
-            </Link>
-          </p>
         </div>
 
         <figure className="hover-lift overflow-hidden rounded-3xl bg-white text-ink shadow-[0_28px_70px_-32px_rgba(0,0,0,0.65)]">
@@ -98,7 +87,7 @@ export function Hero() {
                 <span className="whitespace-nowrap">{PHONE_DISPLAY}</span>
               </a>
             </div>
-            <p className="text-xs leading-snug text-steel">{t.hero.illustrationNote}</p>
+            <p className="text-xs leading-snug text-steel">*{t.hero.illustrationNote}</p>
           </figcaption>
         </figure>
       </div>

@@ -94,12 +94,15 @@ export function Footer() {
           </nav>
         </div>
 
-        <p className="mt-10 max-w-3xl text-center text-xs leading-relaxed text-foam/75 lg:text-start">
-          {t.disclaimer.short}{" "}
-          <Link to={path("/terms")} className="font-semibold text-amber underline underline-offset-2 hover:text-white">
-            {t.disclaimer.termsLink}
-          </Link>
-        </p>
+        <div className="mt-10 max-w-3xl space-y-1 text-center text-xs leading-relaxed text-foam/75 lg:text-start">
+          <p>
+            *{t.disclaimer.short}{" "}
+            <Link to={path("/terms")} className="font-semibold text-amber underline underline-offset-2 hover:text-white">
+              {t.disclaimer.termsLink}
+            </Link>
+          </p>
+          <p>*{t.disclaimer.illustrationShort}</p>
+        </div>
 
         <div className="mt-6 flex flex-col items-center gap-3 border-t border-white/10 pt-6 text-center text-xs text-foam/80 lg:flex-row lg:items-center lg:justify-between lg:text-start">
           <p>

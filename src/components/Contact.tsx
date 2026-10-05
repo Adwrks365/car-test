@@ -223,12 +223,6 @@ export function Contact() {
                 {t.contact.privacyLink}
               </Link>
             </p>
-            <p className="mt-3 text-xs leading-relaxed text-steel">
-              *{t.disclaimer.short}{" "}
-              <Link to={path("/terms")} className="font-semibold text-navy underline">
-                {t.disclaimer.termsLink}
-              </Link>
-            </p>
           </form>
         </Reveal>
       </div>

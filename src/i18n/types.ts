@@ -152,6 +152,7 @@ export type Translations = {
   };
   disclaimer: {
     short: string;
+    illustrationShort: string;
     termsLink: string;
   };
   footer: {
