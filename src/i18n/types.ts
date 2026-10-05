@@ -79,6 +79,7 @@ export type Translations = {
     licenseAlt: string;
     stampPrimary: string;
     stampSecondary: string;
+    illustrationNote: string;
   };
   credentials: {
     eyebrow: string;
@@ -148,6 +149,10 @@ export type Translations = {
     whatsappShort: string;
     callAria: string;
     whatsappAria: string;
+  };
+  disclaimer: {
+    short: string;
+    termsLink: string;
   };
   footer: {
     brand: string;

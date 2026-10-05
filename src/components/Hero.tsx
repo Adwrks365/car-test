@@ -1,4 +1,5 @@
 import { BadgeCheck, Clock3, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PHONE_DISPLAY, telHref } from "../config";
 import { useLanguage } from "../i18n";
 import { PhoneButton, WhatsAppButton } from "./CtaButtons";
@@ -32,7 +33,7 @@ function LicenseStampBadge({ label }: { label: string }) {
 }
 
 export function Hero() {
-  const { locale, t } = useLanguage();
+  const { locale, t, path } = useLanguage();
 
   return (
     <section id="top" className="hero-grid text-white">
@@ -62,6 +63,15 @@ export function Hero() {
             <WhatsAppButton tone="ghost" className="sm:min-w-56" />
           </div>
           <p className="mt-4 text-sm text-foam">{t.hero.personalNote}</p>
+          <p className="mt-3 max-w-xl text-xs leading-relaxed text-foam/80">
+            *{t.disclaimer.short}{" "}
+            <Link
+              to={path("/terms")}
+              className="font-semibold text-amber underline underline-offset-2 hover:text-amber/90"
+            >
+              {t.disclaimer.termsLink}
+            </Link>
+          </p>
         </div>
 
         <figure className="hover-lift overflow-hidden rounded-3xl bg-white text-ink shadow-[0_28px_70px_-32px_rgba(0,0,0,0.65)]">
@@ -74,18 +84,21 @@ export function Hero() {
             />
             {t.assets.showStampOverlay ? <LicenseStampBadge label={t.hero.stampPrimary} /> : null}
           </div>
-          <figcaption className="flex flex-col gap-3 border-t border-steel-line px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-5">
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-extrabold tracking-wide text-emerald-800">{t.hero.stampPrimary}</p>
-              <p className="text-base font-semibold text-navy">{t.hero.stampSecondary}</p>
+          <figcaption className="flex flex-col gap-3 border-t border-steel-line px-4 py-4 sm:px-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-extrabold tracking-wide text-emerald-800">{t.hero.stampPrimary}</p>
+                <p className="text-base font-semibold text-navy">{t.hero.stampSecondary}</p>
+              </div>
+              <a
+                href={telHref()}
+                className="inline-flex min-h-11 shrink-0 items-center gap-2 text-lg font-extrabold whitespace-nowrap text-navy"
+              >
+                <Phone className="size-5 shrink-0 text-cta" aria-hidden="true" />
+                <span className="whitespace-nowrap">{PHONE_DISPLAY}</span>
+              </a>
             </div>
-            <a
-              href={telHref()}
-              className="inline-flex min-h-11 shrink-0 items-center gap-2 text-lg font-extrabold whitespace-nowrap text-navy"
-            >
-              <Phone className="size-5 shrink-0 text-cta" aria-hidden="true" />
-              <span className="whitespace-nowrap">{PHONE_DISPLAY}</span>
-            </a>
+            <p className="text-xs leading-snug text-steel">{t.hero.illustrationNote}</p>
           </figcaption>
         </figure>
       </div>
